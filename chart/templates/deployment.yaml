@@ -86,6 +86,7 @@ spec:
         - name: MOD_DIR
           value: /config/bepinex/plugins/
         {{ if .Values.storage.kind }}
+        volumeMounts:
         - mountPath: /config
           name: gamefiles
         {{ end }}
