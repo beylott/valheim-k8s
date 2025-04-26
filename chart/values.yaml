@@ -22,6 +22,9 @@ serverStorage:
   pvc:
     size: 5Gi
 
+modManager:
+  enabled: false
+
 # if useHostNetworking is set to true then no service is created
 # and the gamePort 
 useHostNetworking: false

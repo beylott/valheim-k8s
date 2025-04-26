@@ -77,6 +77,19 @@ spec:
           mountPath: /extraVolumes/{{ .name }}
         {{ end }}
         resources: {{- toYaml .Values.resources | nindent 10 }}
+      {{ if .Values.modManager.enabled }}
+      - name: mod-manager
+        image: beylott/valheim-k8s-modmanager:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MOD_DIR
+          value: /config/bepinex/plugins/
+        {{ if .Values.storage.kind }}
+        - mountPath: /config
+          name: gamefiles
+        {{ end }}
+      {{ end }}
       volumes:
       {{ if eq .Values.storage.kind "hostvol" }}
       - name: gamefiles
