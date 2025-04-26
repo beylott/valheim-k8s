@@ -60,6 +60,8 @@ spec:
           name: gameport
         - containerPort: {{ .Values.networking.gamePort | int | add 1 }}
           name: queryport
+        - containerPort: {{ .Values.networking.gamePort | int | add 2 }}
+          name: queryport2
         volumeMounts:
         {{ if .Values.storage.kind }}
         - mountPath: /config

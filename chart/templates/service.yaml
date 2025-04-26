@@ -29,6 +29,13 @@ spec:
     {{- if eq .Values.networking.serviceType "NodePort" }}
     nodePort: {{ default "" (.Values.networking.nodePort | int | add 1) }}
     {{- end }}
+  - name: queryport2
+    port: {{ .Values.networking.gamePort | int | add 2 }}
+    targetPort: {{ .Values.networking.gamePort | int | add 2 }}
+    protocol: UDP
+    {{- if eq .Values.networking.serviceType "NodePort" }}
+    nodePort: {{ default "" (.Values.networking.nodePort | int | add 2) }}
+    {{- end }}
   {{ end }}
   type: {{ .Values.networking.serviceType }}
   {{ if .Values.networking.loadBalancerIP }}
