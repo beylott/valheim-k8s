@@ -62,6 +62,8 @@ spec:
           name: queryport
         - containerPort: {{ .Values.networking.gamePort | int | add 2 }}
           name: queryport2
+        - containerPort: 9001
+          name: supervisor
         volumeMounts:
         {{ if .Values.storage.kind }}
         - mountPath: /config
